@@ -1,0 +1,33 @@
+img.right {
+	padding: 5px;
+	float: right;
+	border: 3px double rgba(153,102,0,1);
+	width:100%;
+	max-width:300px;
+}
+img {
+	padding: 5px;
+	border: 3px double rgba(153,102,0,1);
+	width:100%;
+	max-width:300px;
+}
+#home header h1 {
+	font-family:"Arial Black", Gadget, sans-serif
+}
+
+
+ul, li, p, h1, h2, h3, h4, h5, pre {
+	text-align:left;	
+}
+#cover ul, #cover li, #cover p, #cover h1, #cover h2, #cover h3, #cover h4, #cover h5, #cover pre {
+	text-align: center;
+}
+#home img {
+	max-width:300px;
+}
+#home {
+	margin:0 auto;
+}
+.clear {
+	clear:both;
+}

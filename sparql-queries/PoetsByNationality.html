@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>American Poets From Wikipedia</title>
+<link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.1/jquery.mobile-1.1.1.min.css" />
+<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+<script src="http://code.jquery.com/mobile/1.1.1/jquery.mobile-1.1.1.min.js"></script>
+<link rel="stylesheet" href="_css/yellow.css" />
+<link rel="stylesheet" href="_css/structure.css" />
+<link rel="stylesheet" href="_css/mystyles.css" />
+<script type="text/javascript" src="_js/poets_by_nat_script.js"></script>
+
+<title>List of Poets by Nationality</title>
+</head>
+<body>
+  <div id="home" 
+               data-role="page" 
+               data-transition="pop" 
+               data-theme="e" 
+               data-title="A List of Poets By Nationality">
+    <header data-role="header">
+     <a href="#home"
+     data-role="button"
+     class="ui-btn-left ui-btn-active ui-state-persist"
+     data-icon="home">Home</a>
+      <h1>List of Poets By Nationality From Wikipedia</h1>
+
+    </header>
+    <!-- /header -->
+    
+    <div data-role="content">
+      <div data-role="collapsible-set">
+        <div data-role="collapsible" data-collapsed="true">
+          <h1>Poet List - Select Nationality of Interest</h1>
+          <h3>Please select the nationality from the list below, to see a list of poets by that nationality</h3>
+        </div>
+        <div data-role="collapsible" data-collapsed="true">
+          <h1>About this Information</h1>
+          <h3>Click on the Poet's Name to Visit an Article about them on Wikipedia.</h3>
+          <p>DBpedia.org is a "Semantic Web" version of Wikipedia.  Much of the data that is stored in Wikipedia was extracted and stored in a format known as RDF.  It is also open and available for searching, if you know the vocabulary, which can be found on DBpedia.org</p>
+        </div><!--Accordion panel 2 --> 
+
+         <div data-role="collapsible" data-collapsed="false">
+            <ul data-role="listview" id="first_results">
+            </ul>
+         </div><!--accordion panel 3 -->
+       </div><!--collapsible-set-->
+    </div><!-- /content -->
+    
+    <footer data-role="footer"> <a href="#" id="prev" data-role="button">Prev 20</a> <a href="#" id="next" data-role="button">Next 20</a> </div>
+    <!-- /footer --> 
+  </footer>
+  <!-- /page -->
+
+  <div id="american-poets-list" 
+               data-role="page" 
+               data-transition="pop" 
+               data-theme="e" 
+               data-title="A List of American Poets">
+    <div data-role="header">
+      <h1>List of American Poets From Wikipedia</h1>
+
+		<a href="#home"
+             	data-icon="home"
+				data-iconpos="notext"
+             	data-transition="slide"
+             	data-role="button">Home</a> 
+    </div>    <!-- /header -->
+    
+    <div data-role="content">
+      <ul data-role="listview" id="ap_result">
+      </ul>
+    </div> <!-- /content -->
+    
+    <div data-role="footer"> <a href="#" id="prev_ap" data-role="button">Prev 20</a> 		    <a href="#" id="next_ap" data-role="button">Next 20</a> </div>  <!-- /footer --> 
+  </div><!-- /page -->
+  
+    <div id="poets-by-selected-nat-list" 
+               data-role="page" 
+               data-transition="pop" 
+               data-theme="e" 
+               data-title="A List of Poets">
+    <div data-role="header">
+      <h1>List of Poets From Wikipedia</h1>
+
+		<a href="#home"
+             	data-icon="home"
+				data-iconpos="notext"
+             	data-transition="slide"
+             	data-role="button">Home</a> 
+        <a href="#american-poets-list"
+             	data-icon="arrow-r"
+				data-iconpos="left"
+             	data-transition="slide"
+             	data-role="button">American Poets</a> 
+    </div>    <!-- /header -->
+    
+    <div data-role="content">
+      <ul data-role="listview" id="selected_nat_result_list">
+      </ul>
+    </div> <!-- /content -->
+    
+    <div data-role="footer"> <a href="#" id="prev_ap" data-role="button">Prev 20</a> 		    <a href="#" id="next_ap" data-role="button">Next 20</a> </div>  <!-- /footer --> 
+  </div><!-- /page -->
+
+  <div id="poet-details" 
+           data-role="page" 
+           data-transition="pop" 
+           data-theme="e" 
+           data-title="Details about Poet">
+    <div data-role="header">
+        <h1>Details About the Poet</h1>
+        <div data-role="navbar">
+        <ul>
+            <li> <a href="#home"
+             	data-icon="home"
+				data-iconpos="notext"
+             	data-transition="slide"
+             	data-role="button">Home</a> </li>
+            <li><a href="#american-poet-list"
+             data-transition="slide"
+             data-role="button"
+             data-icon="back"
+             data-iconpos="right">Return to American Poets List</a> </li>
+          </ul>
+      </div>
+        <!-- navbar -->
+    </div>
+    <!--header -->
+    
+    <div data-role="content" id="poet_details_content">
+      <div id="result_details"> </div>
+      <div data-role="collapsible" data-collapsed="true">
+        <h1>About this Information</h1>
+        <h3>Click on the Poet's Name to Visit an Article about them on Wikipedia.</h3>
+        <p>DBpedia.org is a "Semantic Web" version of Wikipedia.  Much of the data that is stored in Wikipedia was extracted and stored in a format known as RDF.  It is also open and available for searching, if you know the vocabulary, which can be found on DBpedia.org</p>
+      </div>
+    </div>  <!-- content--> 
+</div><!--page-->
+</body>
+</html>

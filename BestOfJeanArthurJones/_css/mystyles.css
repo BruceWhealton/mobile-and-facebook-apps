@@ -1,0 +1,36 @@
+img.right {
+	padding: 5px;
+	border: 3px double rgba(153,102,0,1);
+	width:100%;
+	max-width:600px;
+}
+img {
+	padding: 10px;
+	border: 3px double rgba(153,102,0,1);
+	width:100%;
+	max-width:600px;
+}
+
+ul, li, p, h1, h2, h3, h4, h5, pre {
+	text-align:left;	
+	font-family:"Times New Roman", Times, serif;
+	padding:5px;
+}
+pre {
+	font-size:1.1em;
+}
+#cover ul, #cover li, #cover p, #cover h1, #cover h2, #cover h3, #cover h4, #cover h5, #cover pre {
+	text-align: center;
+}
+#home img {
+	max-width:600px;
+}
+#home {
+	margin:0 auto;
+}
+.clear {
+	clear:both;
+}
+#home div center p img {
+	max-width: 300px;
+}
