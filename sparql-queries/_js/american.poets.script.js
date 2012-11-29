@@ -1,4 +1,4 @@
-    var query = "PREFIX foaf: <http://xmlns.com/foaf/0.1/> \
+    var am_poets_query = "PREFIX foaf: <http://xmlns.com/foaf/0.1/> \
     PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\
     PREFIX dcterms: <http://purl.org/dc/terms/>\
     PREFIX dbpedia-owl: <http://dbpedia.org/ontology/>\
@@ -16,7 +16,7 @@
     } ORDER BY ?surname \
       LIMIT 20 OFFSET %offset%";
   
-  var parseResults = function(data){
+  var parseAmPoetResults = function(data){
       console.log(data);
       var i = 0,
           len = data.results.bindings.length,
@@ -24,7 +24,7 @@
           $result = $("#american-poets-list-result");            
       
       // empty old stuff
-      $("american-poets-list-result").empty();
+      //$("american-poets-list-result").empty();
       // fill in
       for(i = 0; i < len; i++){
           poet = data.results.bindings[i];
@@ -37,19 +37,19 @@
       }
       
         // refresh style
-      $("#american-poets-list-result").listview('refresh');
+     // $result.listview('refresh');
       
       // hide loader
       $.mobile.hidePageLoadingMsg();
   };
   
-  var getPoets = function(skip){
+  var getAmPoets = function(skip){
       // show loader
       $.mobile.showPageLoadingMsg();
       
       if( skip == null || typeof skip == "undefined" ) skip = 0;
       
-      var prepQuery = query.replace("%offset%", skip);
+      var prepQuery = am_poets_query.replace("%offset%", skip);
       var url = "http://dbpedia.org/sparql?default-graph-uri=http%3A%2F%2Fdbpedia.org&query=" + escape(prepQuery) + "&format=json";
   
     $.getJSON(url, parseResults);
@@ -60,21 +60,21 @@
       var skip = 0;
       
       $("#prev").click(function(){
-          skip -= 20;
+          skip -= 30;
           if( skip < 0 ) skip = 0;
-          getPoets(skip);
+          getAmPoets(skip);
       });
   
       $("#next").click(function(){
-          skip += 20;
-          getPoets(skip);
+          skip += 30;
+          getAmPoets(skip);
       });
       
-       getPoets(skip);
+       getAmPoets(skip);
   });
-         var poet_name = "Edgar Allan Poe";
+
   
-           var poetquery = "PREFIX foaf: <http://xmlns.com/foaf/0.1/> \
+     var am_poet_detail_query = "PREFIX foaf: <http://xmlns.com/foaf/0.1/> \
     PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\
     PREFIX dcterms: <http://purl.org/dc/terms/>\
     PREFIX dbpedia-owl: <http://dbpedia.org/ontology/>\
@@ -105,7 +105,7 @@
        
       
       // empty old stuff
-      $("#american-poet-result-details").empty();
+      $("#american_poet_result_details").empty();
       // fill in
     
           poet_details = data.results.bindings[i];
@@ -127,7 +127,7 @@
               }
               domEntry += '</ul>';
               }
-          $("#american-poet-result-details").append( $(domEntry) );
+          $("#american_poet_result_details").append( $(domEntry) );
 
       
       // hide loader

@@ -1,4 +1,4 @@
-    var query = "PREFIX foaf: <http://xmlns.com/foaf/0.1/> \
+    var iranian_poet_list_query = "PREFIX foaf: <http://xmlns.com/foaf/0.1/> \
     PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\
     PREFIX dcterms: <http://purl.org/dc/terms/>\
     PREFIX dbpedia-owl: <http://dbpedia.org/ontology/>\
@@ -7,7 +7,7 @@
     PREFIX skos: <http://www.w3.org/2004/02/skos/core#> \
     SELECT DISTINCT ?poet ?poet_name ?surname ?poet_wiki_link ?abstract \
     WHERE \
-    {  ?poet dcterms:subject dbcat:American_poets ;\
+    {  ?poet dcterms:subject dbcat:Iranian_poets ;\
         foaf:name ?poet_name ;\
         foaf:surname ?surname ;\
         dbpedia-owl:abstract ?abstract ;\
@@ -16,40 +16,40 @@
     } ORDER BY ?surname \
       LIMIT 20 OFFSET %offset%";
   
-  var parseResults = function(data){
+  var parseIranianPoetResults = function(data){
       console.log(data);
       var i = 0,
           len = data.results.bindings.length,
-          domEntry, poet,
-          $result = $("#american-poets-list-result");            
+          domEntry, iranian_poet,
+          $result = $("#iranian-poet-result");            
       
       // empty old stuff
-      $("american-poets-list-result").empty();
+      $("#iranian-poets-result").empty();
       // fill in
       for(i = 0; i < len; i++){
           poet = data.results.bindings[i];
           poet_name = poet.poet_name.value;
-          domEntry = '<li><a href="#american-poet-details"';
-          domEntry += ' onclick="getPoetDetails(\''+ poet_name + '\')">';
+          domEntry = '<li><a href="#iranian-poet-details"';
+          domEntry += ' onclick="getIranianPoetDetails(\''+ poet_name + '\')">';
           domEntry += poet_name;
           domEntry += '</a></li>';
-          $("#american-poets-list-result").append( $(domEntry) );
+          $("#iranian-poet-result").append( $(domEntry) );
       }
       
         // refresh style
-      $("#american-poets-list-result").listview('refresh');
+      $("#iranian-poet-result").listview('refresh');
       
       // hide loader
       $.mobile.hidePageLoadingMsg();
   };
   
-  var getPoets = function(skip){
+  var getIranianPoets = function(skip){
       // show loader
       $.mobile.showPageLoadingMsg();
       
       if( skip == null || typeof skip == "undefined" ) skip = 0;
       
-      var prepQuery = query.replace("%offset%", skip);
+      var prepQuery = iranian_poet_list_query.replace("%offset%", skip);
       var url = "http://dbpedia.org/sparql?default-graph-uri=http%3A%2F%2Fdbpedia.org&query=" + escape(prepQuery) + "&format=json";
   
     $.getJSON(url, parseResults);
@@ -60,21 +60,21 @@
       var skip = 0;
       
       $("#prev").click(function(){
-          skip -= 20;
+          skip -= 30;
           if( skip < 0 ) skip = 0;
           getPoets(skip);
       });
   
       $("#next").click(function(){
-          skip += 20;
+          skip += 30;
           getPoets(skip);
       });
       
-       getPoets(skip);
+       getIranianPoets(skip);
   });
-         var poet_name = "Edgar Allan Poe";
+
   
-           var poetquery = "PREFIX foaf: <http://xmlns.com/foaf/0.1/> \
+ var iranian_poet_details_query = "PREFIX foaf: <http://xmlns.com/foaf/0.1/> \
     PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\
     PREFIX dcterms: <http://purl.org/dc/terms/>\
     PREFIX dbpedia-owl: <http://dbpedia.org/ontology/>\
@@ -96,7 +96,7 @@
       FILTER ( lang(?abstract) = \"en\" )\
     }";
  
-  var parsePoetResults = function(data){
+  var parseIranianPoetResults = function(data){
      console.log(data);
       var i = 0;
       var len = data.results.bindings.length;
@@ -105,7 +105,7 @@
        
       
       // empty old stuff
-      $("#american-poet-result-details").empty();
+      $("#iranian_poet_result_details").empty();
       // fill in
     
           poet_details = data.results.bindings[i];
@@ -127,7 +127,7 @@
               }
               domEntry += '</ul>';
               }
-          $("#american-poet-result-details").append( $(domEntry) );
+          $("#iranian_poet_result_details").append( $(domEntry) );
 
       
       // hide loader
@@ -138,8 +138,8 @@
       // show loader
       $.mobile.showPageLoadingMsg();
       
-      var prepQuery = poetquery.replace("%poet_name%", poet_name_selected);
+      var prepQuery = iranian_poet_details_query.replace("%poet_name%", poet_name_selected);
       var url = "http://dbpedia.org/sparql?default-graph-uri=http%3A%2F%2Fdbpedia.org&query=" + escape(prepQuery) + "&format=json";
   
-    $.getJSON(url, parsePoetResults);
+    $.getJSON(url, parseIranianPoetResults);
   }
