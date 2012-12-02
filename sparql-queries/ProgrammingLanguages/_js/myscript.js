@@ -86,15 +86,13 @@
     PREFIX dbprop: <http://dbpedia.org/property/>\
     PREFIX dbcat: <http://dbpedia.org/resource/Category:>\
     PREFIX skos: <http://www.w3.org/2004/02/skos/core#> \
-    SELECT DISTINCT ?bn ?cn ?abstract ?wiki_link \
+    SELECT DISTINCT ?an ?abstract ?wiki_link \
     WHERE \
     {  ?a  foaf:name  \"%lang_name%\"@en ;\
+            foaf:name ?an ;\
+            rdf:type dbpedia-owl:ProgrammingLanguage ;\
             dbpedia-owl:abstract ?abstract ;\
-            dbpedia-owl:influencedBy ?b ;\
-	        dbpedia-owl:influenced ?c ;\
             foaf:isPrimaryTopicOf ?wiki_link .\
-		  ?b  foaf:name ?bn .\
-		  ?c  foaf:name ?cn .\
            FILTER ( lang(?abstract) = \"en\" )\
     }";
  
@@ -114,22 +112,22 @@
 		 domEntry += '<a data-rel=\"dialog\" href="';
 	     domEntry += result0.wiki_link.value;
 		 domEntry += '">';
-		 domEntry += lang_name_selected;
+		 domEntry += result0.an.value;
 		 domEntry += '</a>';
 		 domEntry += '<p>';
 		 domEntry += result0.abstract.value;
 		 domEntry += '</p>';
       for(i = 0; i < len; i++){
           lang_result = data.results.bindings[i];
-          b_name = lang_result.bn.value;
-		  c_name = lang_result.cn.value;
-          domEntry += '<ul><li>This language was influenced by: ';
-          domEntry += b_name;
-		  domEntry += 'and this language influenced ';
-		  domEntry += c_name;
-	      domEntry += ' onclick="getLangDetails(\''+ b_name + '\')">';	  
-		  domEntry += b_name;
-          domEntry += '</a></li></ul>';
+          //b_name = lang_result.bn.value;
+		  //c_name = lang_result.cn.value;
+          //domEntry += '<ul><li>This language was influenced by: ';
+          //domEntry += b_name;
+		  //domEntry += 'and this language influenced ';
+		  //domEntry += c_name;
+	      //domEntry += ' onclick="getLangDetails(\''+ b_name + '\')">';	  
+		  //domEntry += b_name;
+          //domEntry += '</a></li></ul>';
           $("#lang-result-details").append( $(domEntry) );
       }
 
